@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Not full functionaly version of TSM client install for UIC tivoli storage manager
 
 Requirements
 ------------
@@ -11,12 +11,33 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Example: 
 
-Dependencies
-------------
+````yml
+#password for initial install
+tsm_client_password: "{{ vault_tsm_client_password }}"
+````
+Optional variables with defaults
+````yml
+#node information for TSM
+tsm_client_server_name: "UIC_ADSM"
+tsm_client_tcp_port: "1500"
+tsm_client_server_address: "{{ ansible_nodename }}.adsmserv.uic.edu"
+tsm_client_node_name: "{{ ansible_nodename }}"
+tsm_client_password: ""
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+#Where to put the configs
+tsm_client_opt_path: "/opt/tivoli/tsm/client/ba/bin"
+
+#installation files and temporary directory to extract to
+tsm_client_packages_tar: "https://accc.webhost.uic.edu/assets/files/adsm_backup/linux/v7.1/latest/7.1.6.5-TIV-TSMBAC-LinuxX86.tar"
+tsm_client_package_dest: "/tmp"
+
+#Logs location
+tsm_client_error_log: "/var/log/tsm/dsmerror.log"
+tsm_client_sched_log: "/var/log/tsm/dsmsched.log"
+````
+
 
 Example Playbook
 ----------------
@@ -25,14 +46,9 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: tsm-client }
 
 License
 -------
 
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
