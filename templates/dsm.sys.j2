@@ -1,0 +1,15 @@
+* {{ ansible_managed }}
+
+SErvername  {{ tsm_client_server_name }}
+   COMMMethod         TCPip
+   TCPPort            {{ tsm_client_tcp_port }}
+   TCPServeraddress   {{ tsm_client_server_address }}
+   PASSWORDAccess generate
+   NODename {{ tsm_client_node_name }}
+   SCHEDMODe POlling
+   MANAGEDServices schedule
+   ERRORLOGName {{ tsm_client_error_log }}
+   ERRORLOGRetention 7 D
+   SCHEDLOGName {{ tsm_client_sched_log }}
+   SCHEDLOGRetention 7 D
+   DEDUPLICATION yes

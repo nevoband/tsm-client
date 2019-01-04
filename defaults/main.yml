@@ -1,0 +1,14 @@
+---
+# defaults file for tsm_client
+
+tsm_client_package_dest: "/tmp"
+tsm_client_server_name: "UIC_ADSM"
+tsm_client_tcp_port: "1500"
+tsm_client_server_address: "{{ ansible_nodename }}.adsmserv.uic.edu"
+tsm_client_node_name: "{{ ansible_nodename }}"
+tsm_client_password: ""
+tsm_client_opt_path: "/opt/tivoli/tsm/client/ba/bin"
+tsm_client_packages_tar: "https://accc.webhost.uic.edu/assets/files/adsm_backup/linux/v7.1/latest/7.1.6.5-TIV-TSMBAC-LinuxX86.tar"
+tsm_client_error_log: "/var/log/tsm/dsmerror.log"
+tsm_client_sched_log: "/var/log/tsm/dsmsched.log"
+tsm_client_pwd_path: "/etc/adsm/TSM.PWD"

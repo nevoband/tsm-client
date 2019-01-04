@@ -1,0 +1,8 @@
+---
+# handlers file for tsm-client
+
+- name: restart adsm service
+  service:
+    name: dsmcad
+    state: restart
+    enabled: yes

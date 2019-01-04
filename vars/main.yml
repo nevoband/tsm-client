@@ -1,0 +1,8 @@
+---
+# vars file for tsm_client
+
+tsm_client_rpm_packages:
+  - "{{ tsm_client_package_dest }}/bacli/gskcrypt64-8.0.50.66.linux.x86_64.rpm"
+  - "{{ tsm_client_package_dest }}/bacli/gskssl64-8.0.50.66.linux.x86_64.rpm"
+  - "{{ tsm_client_package_dest }}/bacli/TIVsm-API64.x86_64.rpm"
+  - "{{ tsm_client_package_dest }}/bacli/TIVsm-BA.x86_64.rpm"

@@ -1,0 +1,49 @@
+---
+# tasks file for tsm_client
+
+- name: creat directory to extract files to
+  path: "{{ tsm_client_package_dst }}/tsm_tmp"
+  state: directory
+  mode: 0755
+
+- name: extract packages from ACCC server
+  unarchive:
+    src: "{{ tsm_client_packages_tar }}"
+    dest: "{{ tsm_client_package_dest }}"
+    remote_src: yes
+
+- name: install tsm packages
+  yum:
+    name: "{{ tsm_client_rpm_packages }}"
+    state: present
+
+- name: delete temp directory
+  file:
+    state: absent
+    path: "{{ tsm_client_package_dst }}/bacli/"
+
+- name: configure tsm options file
+  template:
+    src: dsm.opt.j2
+    dest: "{{ tsm_client_opt_path }}/dsm.opt"
+    owner: root
+    group: root
+    mode: 0660
+
+- name: configure tsm system configuration
+  template:
+    src: dsm.sys.j2
+    dest: "{{ tsm_client_opt_path }}/dsm.sys"
+    owner: root
+    group: root
+    mode: 0660
+
+- name: generate random password
+  command: openssl rand -base64 12
+  register: tsm_client_gen_pwd
+
+- name: encrypt password file TODO dsmc set password <nodename> <password>
+  command: dsmc set password {{ tsm_client_password }} {{ tsm_client_gen_pwd.stdout }}
+  register: command_result
+  failed_when: (command_result.rc !=0) and (command_result.rc !=8 )
+  when: not tsm_client_gen_pwd.skipped is defined
