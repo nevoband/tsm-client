@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Not full functionaly version of TSM client install for UIC tivoli storage manager
+Not fully functional version of TSM client install for UIC tivoli storage manager
 
 Requirements
 ------------
